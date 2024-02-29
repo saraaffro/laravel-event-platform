@@ -10,7 +10,7 @@
         {{$tag -> name}}
         {{$tag -> category}}
     </li>
-    @endforeach>
+    @endforeach
 </ul>
 </div>
 @endsection
