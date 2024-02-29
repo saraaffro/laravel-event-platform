@@ -27,8 +27,10 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('events.create');
+    {   
+        $event = Event :: all();
+        $tags = Tag :: all();
+        return view('events.create', compact('tags'));
     }
 
     /**
@@ -50,9 +52,12 @@ class EventController extends Controller
 
         $newEvent -> save();
 
+        if (isset($data['tags'])) {
+            $newEvent->tags()->attach($data['tags']);
+
+        }
         return redirect() -> route('event.index');
     }
-
     /**
      * Display the specified resource.
      *
@@ -88,7 +93,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $event = Event :: find($id);
+        $event = Event ::with('tags') -> find($id);
 
         $data = $request -> all();
 

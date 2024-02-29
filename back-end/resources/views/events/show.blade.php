@@ -10,7 +10,8 @@
                 
     <h2>Tags:</h2>
         @foreach ($event->tags as $tag)
-            <em>{{ $tag->name }}</em><br>
+            <em>{{ $tag->name }}</em>
+            <br>
         @endforeach
 </div>
    

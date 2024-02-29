@@ -26,6 +26,12 @@
         <br>
         <input type="text" name="location">
         <br><br>
+        <label>Tags:</label><br>
+        @foreach ($tags as $tag)
+            <input type="checkbox" name="tags[]" value="{{$tag ->id}}">
+            <em>{{ $tag->name }}</em><br>
+        @endforeach
+        <br><br>
 
         <input type="submit" value="CREATE">
     </form>
