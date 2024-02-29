@@ -32,9 +32,13 @@ Route::middleware('auth') -> group(function () {
 
 Route::get('/events', [EventController :: class, 'index'])
     -> name('event.index');
+    Route::get('/events/{id}', [EventController :: class, 'show'])
+    -> name('event.show');
 
 Route::get('/tags', [TagController::class, 'index'])
     ->name ('tag.index');
+
+
 
 
 require __DIR__.'/auth.php';

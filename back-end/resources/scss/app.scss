@@ -1,1 +1,23 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+.edit{
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.delete{
+    background-color: red;
+    color: white;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.event{
+    background-color: yellow;
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+}
