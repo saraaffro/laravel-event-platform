@@ -10,6 +10,7 @@ class Tag extends Model
     use HasFactory;
     public function events(){
         
-        // return $this -> hasMany(event::class);
-    }
-}
+        return $this -> belongsToMany(Event::class);
+    }   
+
+} 
