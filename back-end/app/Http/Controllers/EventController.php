@@ -27,7 +27,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('events.create');
     }
 
     /**
@@ -38,7 +38,18 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request -> all();
+
+        $newEvent = new Event();
+
+        $newEvent -> name = $data['name'];
+        $newEvent -> description = $data['description'];
+        $newEvent -> date = $data['date'];
+        $newEvent -> location = $data['location'];
+
+        $newEvent -> save();
+
+        return redirect() -> route('event.index');
     }
 
     /**
@@ -62,7 +73,9 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Event :: find($id);
+
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -74,7 +87,18 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $event = Event :: find($id);
+
+        $data = $request -> all();
+
+        $event -> name = $data['name'];
+        $event -> description = $data['description'];
+        $event -> date = $data['date'];
+        $event -> location = $data['location'];
+
+        $event -> save();
+
+        return redirect() -> route('event.index');
     }
 
     /**
@@ -85,6 +109,10 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = Event :: find($id);
+
+        $event -> delete();
+
+        return redirect() -> route('event.index');
     }
 }
