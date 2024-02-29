@@ -32,8 +32,17 @@ Route::middleware('auth') -> group(function () {
 
 Route::get('/events', [EventController :: class, 'index'])
     -> name('event.index');
-    Route::get('/events/{id}', [EventController :: class, 'show'])
+
+// create poi va nell auth
+Route::get('/events/create', [EventController :: class, 'create'])
+    -> name('event.create');
+
+Route::post('/events/create', [EventController :: class, 'store'])
+    -> name('event.store');
+
+Route::get('/events/{id}', [EventController :: class, 'show'])
     -> name('event.show');
+
 
 Route::get('/tags', [TagController::class, 'index'])
     ->name ('tag.index');

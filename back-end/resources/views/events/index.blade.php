@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <h1>Events:</h1>
-    <a class="event" href="#">CREATE NEW EVENT</a>
+    <a class="event" href="{{ route('event.create') }}">CREATE NEW EVENT</a>
     <ul>
         @foreach ($events as $event)
             <li>

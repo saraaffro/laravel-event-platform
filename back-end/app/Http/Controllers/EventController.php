@@ -27,7 +27,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('events.create');
     }
 
     /**
@@ -38,7 +38,18 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request -> all();
+
+        $newEvent = new Event();
+
+        $newEvent -> name = $data['name'];
+        $newEvent -> description = $data['description'];
+        $newEvent -> date = $data['date'];
+        $newEvent -> location = $data['location'];
+
+        $newEvent -> save();
+
+        return redirect() -> route('event.index');
     }
 
     /**
