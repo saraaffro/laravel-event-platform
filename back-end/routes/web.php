@@ -15,7 +15,7 @@ use App\Http\Controllers\TagController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//che belle le rotte
 Route::get('/', function () {
     return view('welcome');
 });
