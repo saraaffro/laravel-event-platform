@@ -33,12 +33,18 @@ Route::middleware('auth') -> group(function () {
 Route::get('/events', [EventController :: class, 'index'])
     -> name('event.index');
 
-// create poi va nell auth
+// ccrud poi vanno nell auth tranne show
 Route::get('/events/create', [EventController :: class, 'create'])
     -> name('event.create');
 
 Route::post('/events/create', [EventController :: class, 'store'])
     -> name('event.store');
+
+Route::get('/events/{id}/edit', [EventController :: class, 'edit'])
+    -> name('event.edit');
+
+Route::put('/events/{id}/update', [EventController :: class, 'update'])
+    -> name('event.update');
 
 Route::delete('/events/{id}', [EventController :: class, 'destroy'])
     -> name('event.delete');

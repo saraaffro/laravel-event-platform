@@ -73,7 +73,9 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Event :: find($id);
+
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -85,7 +87,18 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $event = Event :: find($id);
+
+        $data = $request -> all();
+
+        $event -> name = $data['name'];
+        $event -> description = $data['description'];
+        $event -> date = $data['date'];
+        $event -> location = $data['location'];
+
+        $event -> save();
+
+        return redirect() -> route('event.index');
     }
 
     /**

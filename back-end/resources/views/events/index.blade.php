@@ -7,7 +7,7 @@
         @foreach ($events as $event)
             <li>
                 <a href="{{ route('event.show', $event -> id)}}">{{ $event -> name }}</a>
-                <a class="edit ms-2" href="#">EDIT</a>
+                <a class="edit ms-2" href="{{ route('event.edit', $event -> id) }}">EDIT</a>
                 <form class=" d-inline-block" action="{{route('event.delete', $event)}}" method="POST">
                     @csrf
                     @method('DELETE')
