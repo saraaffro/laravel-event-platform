@@ -40,6 +40,9 @@ Route::get('/events/create', [EventController :: class, 'create'])
 Route::post('/events/create', [EventController :: class, 'store'])
     -> name('event.store');
 
+Route::delete('/events/{id}', [EventController :: class, 'destroy'])
+    -> name('event.delete');
+
 Route::get('/events/{id}', [EventController :: class, 'show'])
     -> name('event.show');
 
