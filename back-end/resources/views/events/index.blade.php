@@ -9,6 +9,8 @@
                 description: {{ $event -> description }} <br>
                 date: {{ $event -> date }} <br>
                 location: {{ $event -> location }}
+                <br>
+                <a href="#"></a>
                 <br><br>
             </li>            
         @endforeach
