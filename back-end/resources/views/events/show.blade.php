@@ -8,7 +8,10 @@
     <p>Date: {{ $event -> date }}</p>
     <p>Location: {{ $event -> location }}</p>
                 
-                
+    <h2>Tags:</h2>
+        @foreach ($event->tags as $tag)
+            <em>{{ $tag->name }}</em><br>
+        @endforeach
 </div>
    
 @endsection

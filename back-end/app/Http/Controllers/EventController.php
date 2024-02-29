@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Event;
+use App\Models\Tag;
 
 class EventController extends Controller
 {
@@ -60,7 +61,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $event = Event :: find($id);
+        $event = Event::with('tags') -> find($id);
 
         return view('events.show', compact('event'));
     }
@@ -73,7 +74,7 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Event :: find($id);
+        $event = Event::with('tags') -> find($id);
 
         return view('events.edit', compact('event'));
     }

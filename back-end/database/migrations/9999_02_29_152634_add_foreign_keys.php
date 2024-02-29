@@ -27,6 +27,13 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('event_tag', function (Blueprint $table) {
+            
+            $table->dropForeign('event_tag_event_id_foreign') -> constrained();
+            $table->dropColumn('event_id');
+
+            $table->dropForeign('event_tag_tag_id_foreign') -> constrained();
+            $table->dropColumn('tag_id');
+        });
     }
 };
