@@ -46,9 +46,9 @@
             <div>
                 <input type="checkbox" name="tag_id[]" value="{{ $tag->id }}" id="{{"tag" . $tag -> id}}" 
                 @foreach ($event -> tags as $eventTag)
-                @if($eventTag -> id == $tag -> id)
-                checked
-                @endif
+                    @if($eventTag -> id == $tag -> id)
+                    checked
+                    @endif
                 @endforeach
                 <label for="tag {{$tag -> id }}"> {{$tag -> name}}</label>
             </div>
