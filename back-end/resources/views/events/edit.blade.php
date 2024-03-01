@@ -2,6 +2,17 @@
 @section('content')
 <div class="container">
     <h1>EDIT EVENT</h1>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="list-inline">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('event.update', $event -> id)}}" method="POST">
 
         @csrf
