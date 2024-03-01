@@ -23,13 +23,6 @@ class TagTableSeeder extends Seeder
             $events = Event::inRandomOrder()->limit(2)->get();
             $tag -> events()->attach($events);
             });
-    //    $tags = Tag::factory()
-    //     ->count(10)
-    //     ->create();
-    //     foreach ($tags as $tag) {
-
-    //     $events = Event::inRandomOrder()->limit(2)->get();
-    //     $tag->events()->attach($events);
-    //     }
+  
     }
 }

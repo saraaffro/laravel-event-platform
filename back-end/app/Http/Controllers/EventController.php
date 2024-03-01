@@ -75,9 +75,10 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $event = Event::with('tags', 'user') -> find($id);
-
-        return view('events.show', compact('event'));
+        $event = Event:: find($id);
+        $user = User::find($id);
+        $tags = Tag ::all();
+        return view('events.show', compact('event', 'tags', 'user' ));
     }
 
     /**
@@ -88,11 +89,12 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::with('tags') -> find($id);
-
+        $tags = Tag ::all();
         $users = User :: all();
 
-        return view('events.edit', compact('event', 'users'));
+        $event = Event:: find($id);
+
+        return view('events.edit', compact('event', 'users', 'tags'));
     }
 
     /**
@@ -104,7 +106,8 @@ class EventController extends Controller
      */
     public function update(EventStoreRequest $request, $id)
     {
-        $event = Event ::with('tags') -> find($id);
+        $event = Event :: find($id);
+        // $tags = Tag:: all();
 
         $data = $request -> all();
 
@@ -118,6 +121,8 @@ class EventController extends Controller
         $event -> user() -> associate($user);
 
         $event -> save();
+        
+        $event -> tags() -> sync($data['tag_id']);
 
         return redirect() -> route('event.index');
     }
