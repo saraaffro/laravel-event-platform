@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::table('events', function(Blueprint $table){
+            $table -> foreignId('user_id') -> constrained();
+        });
+
         Schema::table('event_tag', function (Blueprint $table) {
 
             $table->foreignId('event_id') -> constrained();
@@ -27,12 +31,19 @@ return new class extends Migration
      */
     public function down()
     {
+
+        Schema::table('events', function(Blueprint $table){
+            $table -> dropForeign('events_user_id_foreign');
+            $table -> dropColumn('user_id');
+        });
+
+
         Schema::table('event_tag', function (Blueprint $table) {
             
-            $table->dropForeign('event_tag_event_id_foreign') -> constrained();
+            $table->dropForeign('event_tag_event_id_foreign');
             $table->dropColumn('event_id');
 
-            $table->dropForeign('event_tag_tag_id_foreign') -> constrained();
+            $table->dropForeign('event_tag_tag_id_foreign');
             $table->dropColumn('tag_id');
         });
     }

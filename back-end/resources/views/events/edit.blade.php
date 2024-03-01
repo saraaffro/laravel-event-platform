@@ -2,6 +2,17 @@
 @section('content')
 <div class="container">
     <h1>EDIT EVENT</h1>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="list-inline">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('event.update', $event -> id)}}" method="POST">
 
         @csrf
@@ -14,17 +25,26 @@
 
         <label for="description">Description</label>
         <br>
-        <input type="text" name="description" value="{{ $event -> description }}">
+        <input type="textarea" name="description" value="{{ $event -> description }}">
         <br><br>
 
         <label for="date">Date</label>
         <br>
-        <input type="text" name="date" value="{{ $event -> date }}">
+        <input type="date" name="date" value="{{ $event -> date }}">
         <br><br>
 
         <label for="location">Location</label>
         <br>
         <input type="text" name="location" value="{{ $event -> location }}">
+        <br><br>
+
+        <label for="user_id">User</label>
+        <br>
+        <select name="user_id" id="user_id">
+            @foreach ($users as $user)
+                <option value="{{ $user -> id}}">{{ $user -> name }}</option>
+            @endforeach
+        </select>
         <br><br>
 
         <label>Tags</label><br>   

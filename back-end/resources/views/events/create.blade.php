@@ -2,6 +2,18 @@
 @section('content')
 <div class="container">
     <h1>NEW EVENT</h1>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="list-inline">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+
     <form action="{{ route('event.store')}}" method="POST">
 
         @csrf
@@ -14,19 +26,30 @@
 
         <label for="description">Description</label>
         <br>
-        <input type="text" name="description">
+        <input type="textarea" name="description">
         <br><br>
 
         <label for="date">Date</label>
         <br>
-        <input type="text" name="date">
+        <input type="date" name="date">
         <br><br>
 
         <label for="location">Location</label>
         <br>
         <input type="text" name="location">
         <br><br>
-        <label>Tags:</label><br>
+
+        <label for="user_id">User</label>
+        <br>
+        <select name="user_id" id="user_id">
+            @foreach ($users as $user)
+                <option value="{{ $user -> id}}">{{ $user -> name }}</option>
+            @endforeach
+        </select>
+        <br><br>
+
+        <label>Tags:</label>
+        <br>
         @foreach ($tags as $tag)
             <input type="checkbox" name="tags[]" value="{{$tag ->id}}" id="tag{{$tag ->id}}">
             <em>{{ $tag->name }}</em><br>
