@@ -48,7 +48,7 @@ class EventController extends Controller
     {
         $data = $request -> all();
 
-        $user = User :: find($data['user_id']);
+        // $user = User :: find($data['user_id']);
 
         $userId = Auth :: id();
 
@@ -59,7 +59,7 @@ class EventController extends Controller
         $newEvent -> date = $data['date'];
         $newEvent -> location = $data['location'];
 
-        $newEvent -> user() -> associate($user);
+        // $newEvent -> user() -> associate($user);
 
         $newEvent -> user_id = $userId;
 
@@ -116,14 +116,15 @@ class EventController extends Controller
 
         $data = $request -> all();
 
-        $user = User :: find($data['user_id']);
+
+        $userId = Auth :: id();
 
         $event -> name = $data['name'];
         $event -> description = $data['description'];
         $event -> date = $data['date'];
         $event -> location = $data['location'];
 
-        $event -> user() -> associate($user);
+        $event -> user_id = $userId;
 
         $event -> save();
         

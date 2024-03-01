@@ -12,13 +12,15 @@
                 <a href="{{ route('event.show', $event -> id)}}">{{ $event -> name }}</a>
 
                 @auth
-                    <a class="edit ms-2" href="{{ route('event.edit', $event -> id) }}">EDIT</a>
-                    <form class=" d-inline-block" action="{{route('event.delete', $event)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
+                    @if (auth() -> user() -> id == $event -> user_id)
+                        <a class="edit ms-2" href="{{ route('event.edit', $event -> id) }}">EDIT</a>
+                        <form class=" d-inline-block" action="{{route('event.delete', $event)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
 
-                        <input class="delete" type="submit" value="DELETE">
-                    </form> 
+                            <input class="delete" type="submit" value="DELETE">
+                        </form> 
+                    @endif
                 @endauth
                 <br><br>
             </li>            
