@@ -15,14 +15,21 @@ class TagTableSeeder extends Seeder
      */
     public function run()
     {
-      
-       $tags = Tag::factory()
+        Tag::factory()
         ->count(10)
-        ->create();
-        foreach ($tags as $tag) {
+        ->create()
+        ->each(function ($tag) {
+  
+            $events = Event::inRandomOrder()->limit(2)->get();
+            $tag -> events()->attach($events);
+            });
+    //    $tags = Tag::factory()
+    //     ->count(10)
+    //     ->create();
+    //     foreach ($tags as $tag) {
 
-        $events = Event::inRandomOrder()->limit(2)->get();
-        $tag->events()->attach($events);
-        }
+    //     $events = Event::inRandomOrder()->limit(2)->get();
+    //     $tag->events()->attach($events);
+    //     }
     }
 }

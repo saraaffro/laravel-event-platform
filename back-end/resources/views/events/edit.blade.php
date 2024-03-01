@@ -47,15 +47,14 @@
         </select>
         <br><br>
 
-        <label>Tags</label><br>
+        <label>Tags</label><br>   
         @foreach ($event -> tags as $tag)
-            <input type="checkbox" name="tags[]" value="{{ $tag->id }}" 
+        <input type="checkbox" name="tags[]" value="{{ $tag->id }}" 
             {{-- se il tag nell'evento contiene l'id del tag allora flaggalo --}}
             {{ $event->tags->contains($tag->id) ? 'checked' : '' }}>
             <label>{{ $tag->name }}</label><br>
         @endforeach
         <br><br>
-
         <input type="submit" value="UPDATE">
     </form>
 </div>
