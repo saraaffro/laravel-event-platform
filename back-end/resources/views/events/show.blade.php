@@ -1,15 +1,14 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h1>Event: {{ $event -> name }}</h1>
+    <h1 class="mt-3 mb-5">{{ $event -> name }}</h1>
     
-    <h2>Name: {{ $event -> name }}</h2>
-    <p>Description: {{ $event -> description }}</p>
-    <p>Date: {{ $event -> date }}</p>
-    <p>Location: {{ $event -> location }}</p>
-    <p>User: {{$event -> user -> name }}</p>
+    <p>{{ $event -> description }}</p>
+    <p>{{ $event -> date }}</p>
+    <p>{{ $event -> location }}</p>
+    <p>By {{$event -> user -> name }}</p>
                 
-    <h2>Tags:</h2>
+    <h5>Tags:</h5>
         @foreach ($event->tags as $tag)
             <em>{{ $tag->name }}</em>
             <br>

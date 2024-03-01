@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h1>NEW EVENT</h1>
+    <h1 class="mt-3">New Event</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -40,7 +40,6 @@
         <br><br>
 
         <label for="user_id">User: {{ auth() -> user() -> name }} </label>
-        <br>
         <br><br>
 
         <label>Tags:</label>
@@ -49,7 +48,7 @@
             <input type="checkbox" name="tags[]" value="{{$tag ->id}}" id="tag{{$tag ->id}}">
             <em>{{ $tag->name }}</em><br>
         @endforeach
-        <br><br>
+        <br>
 
         <input type="submit" value="CREATE">
     </form>
