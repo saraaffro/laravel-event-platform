@@ -51,7 +51,7 @@ Route::middleware('auth') -> group(function () {
 });
 
 // INDEX
-Route::get('/events', [EventController :: class, 'index'])
+Route::get('/', [EventController :: class, 'index'])
     -> name('event.index');
 
 // SHOW

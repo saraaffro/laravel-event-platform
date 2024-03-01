@@ -22,7 +22,7 @@ class EventController extends Controller
     {
         $events = Event :: all();
 
-        return view('events.index', compact('events'));
+        return view('events.welcome', compact('events'));
     }
 
     /**
@@ -48,8 +48,6 @@ class EventController extends Controller
     {
         $data = $request -> all();
 
-        // $user = User :: find($data['user_id']);
-
         $userId = Auth :: id();
 
         $newEvent = new Event();
@@ -59,7 +57,6 @@ class EventController extends Controller
         $newEvent -> date = $data['date'];
         $newEvent -> location = $data['location'];
 
-        // $newEvent -> user() -> associate($user);
 
         $newEvent -> user_id = $userId;
 
@@ -70,7 +67,7 @@ class EventController extends Controller
             $newEvent -> tags() -> attach($data['tags']);
 
         }
-        return redirect() -> route('event.index');
+        return redirect() -> route('event.welcome');
     }
     /**
      * Display the specified resource.
@@ -130,7 +127,7 @@ class EventController extends Controller
         
         $event -> tags() -> sync($data['tag_id']);
 
-        return redirect() -> route('event.index');
+        return redirect() -> route('event.welcome');
     }
 
     /**
@@ -147,6 +144,6 @@ class EventController extends Controller
 
         $event -> delete();
 
-        return redirect() -> route('event.index');
+        return redirect() -> route('event.welcome');
     }
 }
