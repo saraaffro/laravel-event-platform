@@ -27,6 +27,15 @@
         <input type="text" name="location" value="{{ $event -> location }}">
         <br><br>
 
+        <label for="user_id">User</label>
+        <br>
+        <select name="user_id" id="user_id">
+            @foreach ($users as $user)
+                <option value="{{ $user -> id}}">{{ $user -> name }}</option>
+            @endforeach
+        </select>
+        <br><br>
+
         <label>Tags</label><br>
         @foreach ($event -> tags as $tag)
             <input type="checkbox" name="tags[]" value="{{ $tag->id }}" 

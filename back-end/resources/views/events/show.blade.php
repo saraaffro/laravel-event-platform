@@ -7,6 +7,7 @@
     <p>Description: {{ $event -> description }}</p>
     <p>Date: {{ $event -> date }}</p>
     <p>Location: {{ $event -> location }}</p>
+    <p>User: {{$event -> user -> name }}</p>
                 
     <h2>Tags:</h2>
         @foreach ($event->tags as $tag)

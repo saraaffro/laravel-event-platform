@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Event;
 use App\Models\Tag;
+use App\Models\User;
 
 class EventController extends Controller
 {
@@ -28,9 +29,10 @@ class EventController extends Controller
      */
     public function create()
     {   
-        $event = Event :: all();
         $tags = Tag :: all();
-        return view('events.create', compact('tags'));
+        $users = User :: all();
+
+        return view('events.create', compact('tags', 'users'));
     }
 
     /**
@@ -43,6 +45,8 @@ class EventController extends Controller
     {
         $data = $request -> all();
 
+        $user = User :: find($data['user_id']);
+
         $newEvent = new Event();
 
         $newEvent -> name = $data['name'];
@@ -50,10 +54,13 @@ class EventController extends Controller
         $newEvent -> date = $data['date'];
         $newEvent -> location = $data['location'];
 
+        $newEvent -> user() -> associate($user);
+
         $newEvent -> save();
 
         if (isset($data['tags'])) {
-            $newEvent->tags()->attach($data['tags']);
+
+            $newEvent -> tags() -> attach($data['tags']);
 
         }
         return redirect() -> route('event.index');
@@ -66,7 +73,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $event = Event::with('tags') -> find($id);
+        $event = Event::with('tags', 'user') -> find($id);
 
         return view('events.show', compact('event'));
     }
@@ -81,7 +88,9 @@ class EventController extends Controller
     {
         $event = Event::with('tags') -> find($id);
 
-        return view('events.edit', compact('event'));
+        $users = User :: all();
+
+        return view('events.edit', compact('event', 'users'));
     }
 
     /**
@@ -97,10 +106,14 @@ class EventController extends Controller
 
         $data = $request -> all();
 
+        $user = User :: find($data['user_id']);
+
         $event -> name = $data['name'];
         $event -> description = $data['description'];
         $event -> date = $data['date'];
         $event -> location = $data['location'];
+
+        $event -> user() -> associate($user);
 
         $event -> save();
 
