@@ -117,6 +117,8 @@ class EventController extends Controller
     {
         $event = Event :: find($id);
 
+        $event -> tags() -> detach();
+
         $event -> delete();
 
         return redirect() -> route('event.index');
