@@ -14,12 +14,12 @@
 
         <label for="description">Description</label>
         <br>
-        <input type="text" name="description">
+        <input type="textarea" name="description">
         <br><br>
 
         <label for="date">Date</label>
         <br>
-        <input type="text" name="date">
+        <input type="date" name="date">
         <br><br>
 
         <label for="location">Location</label>

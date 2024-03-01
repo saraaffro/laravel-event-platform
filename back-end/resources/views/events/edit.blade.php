@@ -14,12 +14,12 @@
 
         <label for="description">Description</label>
         <br>
-        <input type="text" name="description" value="{{ $event -> description }}">
+        <input type="textarea" name="description" value="{{ $event -> description }}">
         <br><br>
 
         <label for="date">Date</label>
         <br>
-        <input type="text" name="date" value="{{ $event -> date }}">
+        <input type="date" name="date" value="{{ $event -> date }}">
         <br><br>
 
         <label for="location">Location</label>

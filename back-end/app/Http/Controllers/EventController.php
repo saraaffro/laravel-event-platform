@@ -8,6 +8,8 @@ use App\Models\Event;
 use App\Models\Tag;
 use App\Models\User;
 
+use App\Http\Requests\EventStoreRequest;
+
 class EventController extends Controller
 {
     /**
@@ -41,7 +43,7 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventStoreRequest $request)
     {
         $data = $request -> all();
 
@@ -100,7 +102,7 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventStoreRequest $request, $id)
     {
         $event = Event ::with('tags') -> find($id);
 
