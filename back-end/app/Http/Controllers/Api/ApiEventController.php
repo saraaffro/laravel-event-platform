@@ -11,14 +11,11 @@ use App\Models\Tag;
 class ApiEventController extends Controller
 {
     public function getEvents(){
-        // $events = Event :: all();
-        // $tags = Tag :: all();
 
         $events = Event::with('user', 'tags')->get();
 
         return response()->json([
             'events' => $events,
-            // 'tags' => $tags,
         ]);
     }
 }
