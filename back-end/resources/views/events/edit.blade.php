@@ -38,13 +38,7 @@
         <input type="text" name="location" value="{{ $event -> location }}">
         <br><br>
 
-        <label for="user_id">User</label>
-        <br>
-        <select name="user_id" id="user_id">
-            @foreach ($users as $user)
-                <option value="{{ $user -> id}}">{{ $user -> name }}</option>
-            @endforeach
-        </select>
+        <label for="user_id">User: {{ $event -> user -> name }}</label>
         <br><br>
 
         <label>Tags</label><br>

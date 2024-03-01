@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Event;
 use App\Models\Tag;
@@ -49,6 +50,8 @@ class EventController extends Controller
 
         $user = User :: find($data['user_id']);
 
+        $userId = Auth :: id();
+
         $newEvent = new Event();
 
         $newEvent -> name = $data['name'];
@@ -57,6 +60,8 @@ class EventController extends Controller
         $newEvent -> location = $data['location'];
 
         $newEvent -> user() -> associate($user);
+
+        $newEvent -> user_id = $userId;
 
         $newEvent -> save();
 

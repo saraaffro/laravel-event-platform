@@ -39,13 +39,8 @@
         <input type="text" name="location">
         <br><br>
 
-        <label for="user_id">User</label>
+        <label for="user_id">User: {{ auth() -> user() -> name }} </label>
         <br>
-        <select name="user_id" id="user_id">
-            @foreach ($users as $user)
-                <option value="{{ $user -> id}}">{{ $user -> name }}</option>
-            @endforeach
-        </select>
         <br><br>
 
         <label>Tags:</label>
