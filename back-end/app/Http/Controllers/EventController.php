@@ -57,7 +57,6 @@ class EventController extends Controller
         $newEvent -> date = $data['date'];
         $newEvent -> location = $data['location'];
 
-
         $newEvent -> user_id = $userId;
 
         $newEvent -> save();

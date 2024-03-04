@@ -1,19 +1,9 @@
-<script>
-import ApiEvents from './components/ApiEvents.vue';
-
-export default{
-  components:{
-    ApiEvents,
-  }
-}
-</script>
+<script></script>
 
 <template>
-  <ApiEvents/>
+	<router-view></router-view>
 </template>
 
 <style lang="scss">
-@use '../src/scss/general.scss' as *;
-
-
+@use "../src/scss/general.scss" as *;
 </style>

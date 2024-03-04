@@ -38,8 +38,15 @@ export default {
 						<p>Date: {{ event.date }}</p>
 						<p>Location: {{ event.location }}</p>
 						<p>User: {{ event.user.name }}</p>
+						<div class="row justify-content-center">
+							<div class="col-5">
+								<router-link class="border" to="/event/details"
+									>Dettagli evento</router-link
+								>
+							</div>
+						</div>
 
-						<div v-if="event.tags && event.tags.length > 0">
+						<!-- <div v-if="event.tags && event.tags.length > 0">
 							<h6>Tags:</h6>
 							<template v-for="(tag, index) in event.tags" :key="index">
 								<em
@@ -47,7 +54,7 @@ export default {
 									<span v-if="index < event.tags.length - 1">- </span></em
 								>
 							</template>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -57,6 +64,4 @@ export default {
 
 <style scoped lang="scss">
 @use "../scss/general.scss" as *;
-
-
 </style>
