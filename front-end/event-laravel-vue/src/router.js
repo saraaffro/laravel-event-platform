@@ -1,4 +1,3 @@
-// importa router e cronologia
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "./pages/Home.vue";
 import EventDetail from "./components/EventDetail.vue";
@@ -12,8 +11,8 @@ const router = createRouter({
 			component: Home,
 		},
 		{
-			path: "/event/details",
-			name: "Details",
+			path: "/event/details/",
+			name: "EventDetails",
 			component: EventDetail,
 		},
 	],
