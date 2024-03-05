@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Event;
+use App\Models\Tag;
+use App\Models\User;
+
+use App\Http\Requests\EventStoreRequest;
 
 class EventController extends Controller
 {
@@ -17,7 +22,7 @@ class EventController extends Controller
     {
         $events = Event :: all();
 
-        return view('events.index', compact('events'));
+        return view('events.welcome', compact('events'));
     }
 
     /**
@@ -26,8 +31,11 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('events.create');
+    {   
+        $tags = Tag :: all();
+        $users = User :: all();
+
+        return view('events.create', compact('tags', 'users'));
     }
 
     /**
@@ -36,9 +44,11 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventStoreRequest $request)
     {
         $data = $request -> all();
+
+        $userId = Auth :: id();
 
         $newEvent = new Event();
 
@@ -47,11 +57,17 @@ class EventController extends Controller
         $newEvent -> date = $data['date'];
         $newEvent -> location = $data['location'];
 
+        $newEvent -> user_id = $userId;
+
         $newEvent -> save();
 
-        return redirect() -> route('event.index');
-    }
+        if (isset($data['tags'])) {
 
+            $newEvent -> tags() -> attach($data['tags']);
+
+        }
+        return redirect() -> route('event.welcome');
+    }
     /**
      * Display the specified resource.
      *
@@ -60,9 +76,10 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $event = Event :: find($id);
-
-        return view('events.show', compact('event'));
+        $event = Event:: find($id);
+        $user = User::find($id);
+        $tags = Tag ::all();
+        return view('events.show', compact('event', 'tags', 'user' ));
     }
 
     /**
@@ -73,9 +90,12 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Event :: find($id);
+        $tags = Tag ::all();
+        $users = User :: all();
 
-        return view('events.edit', compact('event'));
+        $event = Event:: find($id);
+
+        return view('events.edit', compact('event', 'users', 'tags'));
     }
 
     /**
@@ -85,20 +105,28 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventStoreRequest $request, $id)
     {
         $event = Event :: find($id);
+        // $tags = Tag:: all();
 
         $data = $request -> all();
+
+
+        $userId = Auth :: id();
 
         $event -> name = $data['name'];
         $event -> description = $data['description'];
         $event -> date = $data['date'];
         $event -> location = $data['location'];
 
-        $event -> save();
+        $event -> user_id = $userId;
 
-        return redirect() -> route('event.index');
+        $event -> save();
+        
+        $event -> tags() -> sync($data['tag_id']);
+
+        return redirect() -> route('event.welcome');
     }
 
     /**
@@ -111,8 +139,10 @@ class EventController extends Controller
     {
         $event = Event :: find($id);
 
+        $event -> tags() -> detach();
+
         $event -> delete();
 
-        return redirect() -> route('event.index');
+        return redirect() -> route('event.welcome');
     }
 }

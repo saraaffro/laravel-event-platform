@@ -1,24 +1,36 @@
 @import '~bootstrap/scss/bootstrap';
 
+.card{
+    height: 250px;
+    padding: 15px;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
 .edit{
-    background-color: blue;
+    background-color: #6a6a6a;
+    width: 50px;
     color: white;
     padding: 5px;
-    text-decoration: none;
+    text-align: center;
     margin-right: 20px;
+    border-radius: 5px;
 }
 
 .delete{
-    background-color: red;
+    background-color: #ef3b2d;
     color: white;
     padding: 5px;
-    text-decoration: none;
     border: none;
+    border-radius: 5px;
 }
 
 .event{
-    background-color: yellow;
-    color: black;
+    background-color: #ef3b2d;
+    color: white;
     padding: 5px;
-    text-decoration: none;
+    border-radius: 5px;
 }
